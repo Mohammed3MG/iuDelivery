@@ -1,11 +1,11 @@
 {
   "root": true,
+  "api": {
+    "projectId": "6ocoi2x5",
+    "dataset": "production"
+  },
   "project": {
     "name": "deliveroo-clone-yt"
-  },
-  "api": {
-    "projectId": "1prggvz5",
-    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",

@@ -1,10 +1,11 @@
-import { View, Text, SafeAreaView, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { ChevronDownIcon, SearchIcon, AdjustmentsIcon, UserIcon  } from "react-native-heroicons/outline";
+import { ArchiveIcon, SearchIcon, UserIcon  } from "react-native-heroicons/outline";
 import Categories from '../components/Categories';
 import FeaturedRow from '../components/FeaturedRow';
 import sanityClient from '../sanity';
+import { LocationMarkerIcon } from 'react-native-heroicons/solid';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -15,7 +16,7 @@ const HomeScreen = () => {
       headerShown: false,
     });
   }, [])
-
+  
   useState(() => {
     sanityClient.fetch(
       `
@@ -45,12 +46,16 @@ const HomeScreen = () => {
                   
         <View className="flex-1">
           <Text className="font-bold text-gray-400 text-xs">Deliver Now!</Text>
-          <Text className="font-bold text-xl">
-            Current Location
-            <ChevronDownIcon size={20} color="#00CCBB" />
+          <TouchableOpacity onPress={() => navigation.navigate('Location')}>
+          <Text className="font-bold">
+          Frankfurter Allee 73A, 10247, Berlin
+            <LocationMarkerIcon size={20} color="#00CCBB" />
           </Text>
+          </TouchableOpacity>
         </View>
-        <UserIcon size={35} color="#00CCBB" />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <UserIcon size={35} color="#00CCBB" />
+          </TouchableOpacity>
       </View>
 
       {/*Search */}
@@ -59,7 +64,11 @@ const HomeScreen = () => {
           <SearchIcon color="gray" />
           <TextInput placeholder='Type your search here...' keyboardType='default' />
         </View>
-        <AdjustmentsIcon color="#00CCBB" />
+
+        <TouchableOpacity onPress={() => navigation.navigate('MyOrders')}>
+        <ArchiveIcon size={35} color="#00CCBB" />
+        </TouchableOpacity>
+       
       </View>
 
       {/*Body */}
