@@ -16,6 +16,7 @@ import { useState, useEffect } from 'react';
 import firebase from 'firebase/compat';
 import { Provider as PaperProvider } from 'react-native-paper';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {

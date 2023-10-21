@@ -8,6 +8,7 @@ import * as Progress from 'react-native-progress';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import axios from 'axios';
 
+
 const DeliveryScreen = () => {
     const navigation = useNavigation();
     const restaurant = useSelector(selectRestaurant);
@@ -80,32 +81,7 @@ function decodePolyline(encoded) {
 
     return (
         <View style={{ flex: 1, backgroundColor: '#00CCBB' }}>
-            <SafeAreaView style={{ zIndex: 50 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 15 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        <XIcon color="white" size={30} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('MyOrders')}>
-                        <Text style={{ color: 'white', fontSize: 20, fontWeight: 'light' }}>My Orders</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={{ backgroundColor: 'white', margin: 15, borderRadius: 10, padding: 30, zIndex: 50, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2, elevation: 3 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space between' }}>
-                        <View>
-                            <Text style={{ fontSize: 18, color: 'gray' }}>Estimated Arrival</Text>
-                            <Text style={{ fontSize: 40, fontWeight: 'bold' }}>{estimatedArrival}</Text>
-                        </View>
-                        <Image source={{ uri: 'https://links.papareact.com/fls' }} style={{ width: 100, height: 100 }} />
-                    </View>
-
-                    <Progress.Bar size={30} color="#00CCBB" indeterminate={true} />
-
-                    <Text style={{ marginTop: 10, color: 'gray' }}>
-                        Your order at {restaurant.title} is being prepared
-                    </Text>
-                </View>
-            </SafeAreaView>
+           
 
             <MapView
                 initialRegion={{
@@ -117,16 +93,41 @@ function decodePolyline(encoded) {
                 style={{ flex: 1, marginTop: -10, zIndex: 0 }}
                 mapType='mutedStandard'
             >
-                <Marker coordinate={routeCoordinates[0]} title={restaurant.title} description={restaurant.short_description} />
-                <Marker coordinate={routeCoordinates[routeCoordinates.length - 1]} pinColor='#ee5253' />
+                {routeCoordinates.length > 0 ? (
+                <>
+                <Marker
+                coordinate={routeCoordinates[0]}
+                title={restaurant.title}
+                description={restaurant.short_description}
+                />
+                <Marker
+                coordinate={routeCoordinates[routeCoordinates.length - 1]}
+                pinColor='#ee5253'
+                />
                 <Polyline coordinates={routeCoordinates} strokeColor="#ee5253" strokeWidth={6} />
+                </>
+                ) : null}
+
             </MapView>
+
+
+            <SafeAreaView style={{ backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, height: 100 }}>
+            
+                  
+            <View>
+            <Text style={{ fontSize: 14, color: 'gray' }}>Estimated Arrival</Text>
+                    {<Text style={{ fontSize: 18, fontWeight: 'bold'}}>{estimatedArrival}</Text>}
+                </View>
+                {<Progress.Bar size={40} color="#00CCBB" indeterminate={true}  style={{marginLeft:20}}/>}
+                { <Image source={{ uri: 'https://links.papareact.com/fls' }} style={{ width: 100, height: 100 }} />}
+
+            </SafeAreaView>
 
             <SafeAreaView style={{ backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, height: 100 }}>
                 <Image source={{ uri: 'https://links.papareact.com/wru' }} style={{ width: 60, height: 60, backgroundColor: 'gray', padding: 15, borderRadius: 100, marginLeft: 15 }} />
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 20 }}>Mohammed</Text>
-                    <Text style={{ color: 'gray' }}>Your Rider</Text>
+                    <Text style={{ fontSize: 20 }}> Mohammed</Text>
+                    <Text style={{ color: 'gray' }}> Your Rider</Text>
                 </View>
                 <Text style={{ color: '#00CCBB', fontSize: 20, marginRight: 15, fontWeight: 'bold' }}>Call</Text>
             </SafeAreaView>

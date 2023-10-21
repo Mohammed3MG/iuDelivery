@@ -48,7 +48,7 @@ const HomeScreen = () => {
           <Text className="font-bold text-gray-400 text-xs">Deliver Now!</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Location')}>
           <Text className="font-bold">
-          Frankfurter Allee 73A, 10247, Berlin
+          Suarezstraße 15, 14057, Berlin
             <LocationMarkerIcon size={20} color="#00CCBB" />
           </Text>
           </TouchableOpacity>

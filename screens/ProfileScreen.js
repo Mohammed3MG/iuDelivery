@@ -169,11 +169,11 @@ const ProfileScreen = () => {
     
     return (
     <>
-    <SafeAreaView className='bg-white flex-1'>
-        <TouchableOpacity onPress={navigation.goBack} className='absolute top-14 left-5 p-2 bg-gray-100 rounded-full z-50'>
-            <ArrowLeftIcon size={20} color='#00CCBB' />
-        </TouchableOpacity>
-            <View className='items-center'>
+          <SafeAreaView className='bg-white flex-1'>
+              <TouchableOpacity onPress={navigation.goBack} className='absolute top-14 left-5 p-2 bg-gray-100 rounded-full z-50'>
+              <ArrowLeftIcon size={20} color='#00CCBB' />
+              </TouchableOpacity>
+              <View className='items-center'>
                     <View className='mt-10 pt-5'>
                     <Image source={ require('../assets/Logo_IUBH.png')} className=' scale-5' />
                     </View>
@@ -190,10 +190,10 @@ const ProfileScreen = () => {
                     </View>
                 </View>
                 
-            </SafeAreaView>
+          </SafeAreaView>
             
-            
-            <View style={styles.mainbox}>
+        <SafeAreaView>
+        <View style={styles.mainbox}>
           <MapView
             style={styles.mapView}
             customMapStyle={customStyle}
@@ -203,21 +203,22 @@ const ProfileScreen = () => {
             longitude: 13.356039426938723,
             latitudeDelta: 1,
             longitudeDelta:1,
-          }}
-                >
-                    <Marker
-                  coordinate={{
-                    latitude: 52.528240887450046,
-                    longitude: 13.356039426938723,
-                  }}
-                  title='Berlin'
-                  description='IUBH Students'
-                  identifier='origin'
-                  pinColor='#ee5253'
+            }}
+            >
+              <Marker
+              coordinate={{
+              latitude: 52.528240887450046,
+              longitude: 13.356039426938723,
+              }}
+              title="Berlin"
+              description="IUBH Students"
+              identifier="origin"
+              pinColor="#ee5253"
               />
-           
+      
           </MapView>
-      </View>
+          </View>
+          </SafeAreaView>   
     </>
     );
 };
@@ -225,11 +226,11 @@ const styles = StyleSheet.create({
     mainbox:{
       textAlign:'center',
       margin: 0,
-      flex: 5,
+      flex: 1,
       justifyContent: 'space-between',
     },
     mapView:{
-      flex: 25,
+      flex: 3,
     }
   });
 

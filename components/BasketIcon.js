@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { selectBasketItems, selectBasketTotal } from '../features/basketSlice'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native'
-import Currency from 'react-currency-formatter'
+
 
 const BasketIcon = () => {
     const items = useSelector(selectBasketItems);
@@ -22,7 +22,7 @@ const BasketIcon = () => {
         </Text>
         <Text className='flex-1 text-white font-extrabold text-lg text-center'>View Basket</Text>
         <Text className='text-lg text-white font-extrabold'>
-          <Currency quantity={basketTotal} currency="EUR"/>
+          { basketTotal } €
         </Text>
         </TouchableOpacity>
     </View>

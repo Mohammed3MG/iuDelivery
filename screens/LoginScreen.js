@@ -7,7 +7,7 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState(null);
   const handleLogin = async () => {
     setLoading(true);
 
@@ -16,7 +16,7 @@ const LoginScreen = ({ navigation }) => {
       // User successfully logged in, you can navigate to the main app
       navigation.navigate('Home');
     } catch (error) {
-      console.error(error.message);
+      setError('Login failed. Please check your email and password.');  
     } finally {
       setLoading(false);
     }
@@ -34,6 +34,7 @@ const LoginScreen = ({ navigation }) => {
         />
       </View>
       <Text style={styles.title}>Login</Text>
+  
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -53,7 +54,11 @@ const LoginScreen = ({ navigation }) => {
             <Text  style={styles.buttonStyle}>
                Login
             </Text>
-         </TouchableOpacity>
+      </TouchableOpacity>
+      
+      {error && (
+        <Text style={styles.errorText}>{error}</Text>
+      )}
           
 
       <Portal>
@@ -98,6 +103,12 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontWeight: 'bold',
         textAlign: 'center',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginTop: 10,
+    marginBottom:10,
   },
 });
 

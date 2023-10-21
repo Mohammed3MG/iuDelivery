@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect, useEffect } from 'react'
+import React, { useLayoutEffect, useEffect, useMemo } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { urlFor } from '../sanity';
 import {
@@ -7,7 +7,8 @@ import {
     ChevronRightIcon,
     LocationMarkerIcon,
     StarIcon
-} from 'react-native-heroicons/solid';
+}
+from 'react-native-heroicons/solid';
 import { QuestionMarkCircleIcon } from 'react-native-heroicons/outline';
 import DishRow from '../components/DishRow';
 import BasketIcon from '../components/BasketIcon';
@@ -31,22 +32,23 @@ const RestaurantScreen = () => {
         lat
     },
     } = useRoute();
+ 
+    const restaurantData = useMemo(() => ({
+        id,
+        imgUrl,
+        title,
+        rating,
+        genre,
+        address,
+        short_description,
+        dishes,
+        long,
+        lat,
+    }), [id, imgUrl, title, rating, genre, address, short_description, dishes, long, lat]);
+
     useEffect(() => {
-        dispatch(
-        setRestaurant({
-            id,
-            imgUrl,
-            title,
-            rating,
-            genre,
-            address,
-            short_description,
-            dishes,
-            long,
-            lat
-        })
-        );
-    }, []);
+        dispatch(setRestaurant(restaurantData));
+    }, [dispatch, restaurantData]);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -82,7 +84,7 @@ const RestaurantScreen = () => {
                                 </View>
                                 <View className='flex-row items-center space-x-1'>
                                     <LocationMarkerIcon color='gray' opacity={0.4} size={22} />
-                                    <Text className='text-xs text-gray-500'>Nearby {address}
+                                    <Text className='text-xs text-gray-500'> {address}
                                     </Text>
                                 </View>
                             </View>

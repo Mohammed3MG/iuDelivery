@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { SafeAreaView } from 'react-native';
 import { XCircleIcon } from 'react-native-heroicons/solid';
 import { urlFor } from '../sanity';
-import Currency from 'react-currency-formatter';
 import { firebase } from '../Firebase/Config';
 
 const BasketScreen = () => {
@@ -89,7 +88,7 @@ const BasketScreen = () => {
                           <Text className='flex-1'>{items[0]?.name}</Text>
                           
                           <Text className='text-gray-600'>
-                              <Currency quantity={items[0]?.price} currency='EUR'/>
+                          {items[0].price} €
                           </Text>
 
                           <TouchableOpacity>
@@ -107,21 +106,21 @@ const BasketScreen = () => {
                   <View className='flex-row justify-between'>
                       <Text className='text-gray-400'>Subtotal</Text>
                       <Text className='text-gray-400'>
-                      <Currency quantity={basketTotal} currency='EUR'/>
+                          {basketTotal} €
                       </Text>
                   </View>
 
                   <View className='flex-row justify-between'>
-                      <Text className='text-gray-400'>Delivery Fee</Text>
+                      <Text className='text-gray-400'>Free Delivery</Text>
                       <Text className='text-gray-400'>
-                      <Currency quantity={1.5} currency='EUR'/>
+                      0.00 €
                       </Text>
                   </View>
 
                   <View className='flex-row justify-between'>
                       <Text>Order Total</Text>
                       <Text className='font-extrabold'>
-                      <Currency quantity={basketTotal + 1.5} currency='EUR'/>
+                      {basketTotal} €
                       </Text>
                   </View>
 

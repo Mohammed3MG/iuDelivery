@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {ArrowLeftIcon} from 'react-native-heroicons/solid';
 import { firebase } from '../Firebase/Config';
-import Currency from "react-currency-formatter";
+
 
 const MyOrdersScreen = () => {
 
@@ -44,6 +44,7 @@ const MyOrdersScreen = () => {
     <SafeAreaView className='flex-1 bg-white'>
    
         <View>
+          
           <Text className='text-xl font-bold text-center p-3'>My Orders</Text>
           
         <FlatList
@@ -77,7 +78,7 @@ const MyOrdersScreen = () => {
                   )
                 })}
               <Text className='text-green-500 text-lg font-bold pl-3 text-center p-4 bg-gray-100'>
-                Total:  <Currency quantity={item.total} currency="EUR" />
+                Total: {item.total} €
               </Text>
              </View>
            

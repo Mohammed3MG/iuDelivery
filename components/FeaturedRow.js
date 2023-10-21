@@ -72,3 +72,5 @@ const FeaturedRow = ({ id, title, description }) => {
 const styles = StyleSheet.create({})
 
 export default FeaturedRow;
+
+
