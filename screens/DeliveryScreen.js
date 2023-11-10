@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../features/restaurantSlice';
-import * as Progress from 'react-native-progress';
+// import * as Progress from 'react-native-progress';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
@@ -100,10 +100,10 @@ const DeliveryScreen = () => {
                 </View>
                 
                 {/* Display a loading indicator */}
-                <Progress.Bar size={40} color="#00CCBB" indeterminate={true} />
+                {/* <Progress.Bar size={40} color="#00CCBB" indeterminate={true} /> */}
 
                 {/* Display an image (e.g., rider) */}
-                <Image source={{ uri: 'https://links.papareact.com/fls' }} style={{ width: 100, height: 100 }} />
+                <Image source={require('../assets/giphy.webp')} style={{ width: 100, height: 100 }} />
             </SafeAreaView>
         </View>
     );
