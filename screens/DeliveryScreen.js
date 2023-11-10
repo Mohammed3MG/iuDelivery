@@ -1,14 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, SafeAreaView } from 'react-native';
+import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../features/restaurantSlice';
 import * as Progress from 'react-native-progress';
 import MapView, { Marker, Polyline } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
+import { ArrowLeftIcon } from 'react-native-heroicons/solid';
+
+import { resetBasket } from '../features/basketSlice';
+import { useDispatch } from 'react-redux';
 
 const DeliveryScreen = () => {
+
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const clearBasketAndReturnHome = () => {
+        // Dispatch the resetBasket action to clear the basket
+        dispatch(resetBasket());
+    
+        // Navigate back to the home screen
+        navigation.navigate('Home');
+      };
     // Get restaurant data from Redux store
     const restaurant = useSelector(selectRestaurant);
-
+    
     // Define home location with latitude and longitude
     const homeLocation = { latitude: 52.50768847543942, longitude: 13.294998226071066 };
 
@@ -45,6 +60,10 @@ const DeliveryScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: '#00CCBB' }}>
+            <TouchableOpacity  onPress={clearBasketAndReturnHome} className='absolute top-14 left-5 p-2 bg-emerald-400 rounded-full z-50'>
+                <ArrowLeftIcon size={20} color='#FFFFFF' />
+            </TouchableOpacity>
+
             <MapView
                 initialRegion={{
                     latitude: restaurant.lat,
@@ -86,8 +105,6 @@ const DeliveryScreen = () => {
                 {/* Display an image (e.g., rider) */}
                 <Image source={{ uri: 'https://links.papareact.com/fls' }} style={{ width: 100, height: 100 }} />
             </SafeAreaView>
-
-            {/* Additional UI elements for rider information or other details */}
         </View>
     );
 };

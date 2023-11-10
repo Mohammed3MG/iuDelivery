@@ -11,6 +11,11 @@ export const basketSlice = createSlice({
     initialState,      // Use the defined initial state
     reducers: {
         // Define a reducer to add an item to the basket
+        resetBasket: (state) => {
+            // Reset the basket to its initial state
+            state.items = [];
+        },
+        
         addToBasket: (state, action) => {
             // Update the basket state by adding the new item
             state.items = [...state.items, action.payload];
@@ -42,7 +47,7 @@ export const basketSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { addToBasket, removeFromBasket } = basketSlice.actions;
-
+export const { resetBasket } = basketSlice.actions;
 // Selectors to get specific parts of the basket state
 export const selectBasketItems = (state) => state.basket.items;
 export const selectBasketItemsWithId = (state, id) =>

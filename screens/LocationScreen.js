@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, TouchableOpacity, Image, Dimensions, StyleSheet} from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {ArrowLeftIcon, UserIcon} from 'react-native-heroicons/solid';
+import {ArrowLeftIcon} from 'react-native-heroicons/solid';
 import MapView, {Marker} from 'react-native-maps';
 
 const LocationScreen = () => {

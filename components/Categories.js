@@ -36,7 +36,8 @@ const Categories = () => {
                     imgUrl={urlFor(category.image).width(200).url()} // Set the image URL using the urlFor function
                     title={category.name} // Set the title of the category
                 />
-            )}
+                ))}
+            
         </ScrollView>
     );
 }
