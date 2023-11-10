@@ -99,9 +99,8 @@ const DeliveryScreen = () => {
                     <Text style={{ fontSize: 18, fontWeight: 'bold', paddingLeft: 5 }}>{distance}</Text>
                 </View>
                 
-                {/* Display a loading indicator */}
-                {/* <Progress.Bar size={40} color="#00CCBB" indeterminate={true} /> */}
-
+               
+               
                 {/* Display an image (e.g., rider) */}
                 <Image source={require('../assets/giphy.webp')} style={{ width: 100, height: 100 }} />
             </SafeAreaView>
