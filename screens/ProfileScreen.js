@@ -17,7 +17,7 @@ const ProfileScreen = () => {
         </TouchableOpacity>
 
         <View className='items-center'>
-          <View className='mt-10 pt-5'>
+          <View className='mt-20 pt-5'>
             <Image source={require('../assets/Logo_IUBH.png')} className='scale-5' />
           </View>
 
@@ -27,7 +27,8 @@ const ProfileScreen = () => {
 
           <View className='mt-2'>
             <Text className='text-sky-900 font-bold text-lg text-center'>Mohammed Surguli</Text>
-            <Text className='text-sky-900 font-bold text-lg text-center'>DoB: 15.1.1992</Text>
+            <Text className='text-sky-900 font-bold text-lg text-center'>Computer Science</Text>
+            <Text className='text-sky-900 font-bold text-lg text-center'>Mohammed.surguli@iu-study.org</Text>
             <Text className='text-sky-900 font-bold text-lg text-center'>Matriculation No:</Text>
             <Text className='text-sky-900 font-bold text-lg text-center'>92105708</Text>
           </View>

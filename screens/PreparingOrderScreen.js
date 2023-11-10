@@ -7,11 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 const PreparingOrderScreen = () => {
   const navigation = useNavigation();
 
-  // Use useEffect to navigate to the 'Delivery' screen after a delay
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('Delivery');
-    }, 1000); // You can adjust the delay as needed (1 second in this case)
+    }, 1000); // You can adjust the delay as needed
   }, [navigation]);
 
   return (
