@@ -19,6 +19,7 @@ const RestaurantScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
 
+    // Get restaurant data from the route parameters
     const { params: {
         id,
         imgUrl,
@@ -32,7 +33,8 @@ const RestaurantScreen = () => {
         lat
     },
     } = useRoute();
- 
+
+    // Store restaurant data in a useMemo to prevent unnecessary recalculations
     const restaurantData = useMemo(() => ({
         id,
         imgUrl,
@@ -46,10 +48,12 @@ const RestaurantScreen = () => {
         lat,
     }), [id, imgUrl, title, rating, genre, address, short_description, dishes, long, lat]);
 
+    // Dispatch the restaurant data to Redux store when it changes
     useEffect(() => {
         dispatch(setRestaurant(restaurantData));
     }, [dispatch, restaurantData]);
 
+    // Hide the header in the navigation stack
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
@@ -58,20 +62,26 @@ const RestaurantScreen = () => {
 
     return (
         <>
+            {/* Display shopping cart icon */}
             <BasketIcon />
+
+            {/* Scrollable content for the restaurant screen */}
             <ScrollView className='relative '>
                 <View>
+                    {/* Display restaurant image */}
                     <Image
                         source={{
                             uri: urlFor(imgUrl).url(),
                         }}
                         className='w-full h-56 bg-gray-300 p-4'
                     />
-            
+
+                    {/* Back button */}
                     <TouchableOpacity onPress={navigation.goBack} className='absolute top-14 left-5 p-2 bg-gray-100 rounded-full'>
                         <ArrowLeftIcon size={20} color='#00CCBB' />
                     </TouchableOpacity>
-                
+
+                    {/* Restaurant details */}
                     <View className='bg-white'>
                         <View className='px-4 pt-4'>
                             <Text className='text-3xl font-bold'>{title}</Text>
@@ -90,6 +100,8 @@ const RestaurantScreen = () => {
                             </View>
                             <Text className='text-gray-500 mt-2 pb-4'>{short_description}</Text>
                         </View>
+
+                        {/* Food allergy information */}
                         <TouchableOpacity className='flex-row items-center space-x-2 p-4 border-y border-gray-300'>
                             <QuestionMarkCircleIcon color='gray' size={20} opacity={0.6} />
                             <Text className='pl-2 flex-1 text-md font-bold'>Have a food allergy?</Text>
@@ -97,7 +109,8 @@ const RestaurantScreen = () => {
                         </TouchableOpacity>
                     </View>
                 </View>
-        
+
+                {/* Display restaurant menu */}
                 <View className="pb-36">
                     <Text className='px-4 pt-6 mb-3 font-bold text-xl'>Menu</Text>
                     {dishes.map(dish => (
@@ -108,7 +121,6 @@ const RestaurantScreen = () => {
                             description={dish.short_description}
                             price={dish.price}
                             image={dish.image}
-
                         />
                     ))}
                 </View>
@@ -117,4 +129,4 @@ const RestaurantScreen = () => {
     );
 };
 
-export default RestaurantScreen
+export default RestaurantScreen;

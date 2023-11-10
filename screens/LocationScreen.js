@@ -1,43 +1,44 @@
 import { View, Text, SafeAreaView, TouchableOpacity, Image, Dimensions, StyleSheet} from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native'
-import {ArrowLeftIcon, UserIcon,} from 'react-native-heroicons/solid';
+import { useNavigation } from '@react-navigation/native';
+import {ArrowLeftIcon, UserIcon} from 'react-native-heroicons/solid';
 import MapView, {Marker} from 'react-native-maps';
-const LocationScreen = () => {
-    const navigation = useNavigation();
-   
-  return (
-      <View style={styles.mainbox}>
-           <TouchableOpacity onPress={navigation.goBack} className='absolute top-14 left-5 p-2 bg-gray-100 rounded-full z-50'>
-            <ArrowLeftIcon size={20} color='#00CCBB' />
-        </TouchableOpacity>
-          <MapView
-            style={styles.mapView}
-            customMapStyle={customStyle}
-            userLocationCalloutEnabled={true}
-            initialRegion={{
-            latitude:   52.507685210356364,
-            longitude: 13.295041141359507,
-            latitudeDelta: 1,
-            longitudeDelta:1,
-          }} >
-                  <Marker
-                  coordinate={{
-                  latitude:   52.507685210356364,
-                  longitude: 13.295041141359507,
-                  }}
-                  title='Berlin'
-                  identifier='origin'
-                  pinColor='#ee5253'
-                  />
-      
-           
-          </MapView>
-      </View>
-    
-  )
-}
 
+const LocationScreen = () => {
+    // Get the navigation object
+    const navigation = useNavigation();
+
+    return (
+        <View style={styles.mainbox}>
+            {/* Button to go back to the previous screen */}
+            <TouchableOpacity onPress={navigation.goBack} className='absolute top-14 left-5 p-2 bg-gray-100 rounded-full z-50'>
+                <ArrowLeftIcon size={20} color='#00CCBB' />
+            </TouchableOpacity>
+            
+            <MapView
+                style={styles.mapView}
+                customMapStyle={customStyle}
+                userLocationCalloutEnabled={true}
+                initialRegion={{
+                    latitude:   52.507685210356364,
+                    longitude: 13.295041141359507,
+                    latitudeDelta: 1,
+                    longitudeDelta: 1,
+                }}
+            >
+                <Marker
+                    coordinate={{
+                        latitude:   52.507685210356364,
+                        longitude: 13.295041141359507,
+                    }}
+                    title='Berlin'
+                    identifier='origin'
+                    pinColor='#ee5253'
+                />
+            </MapView>
+        </View>
+    );
+}
 const customStyle = [
   {
     elementType: 'geometry',

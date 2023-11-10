@@ -6,12 +6,17 @@ import * as Progress from 'react-native-progress';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 
 const DeliveryScreen = () => {
+    // Get restaurant data from Redux store
     const restaurant = useSelector(selectRestaurant);
+
+    // Define home location with latitude and longitude
     const homeLocation = { latitude: 52.50768847543942, longitude: 13.294998226071066 };
+
+    // State to store the calculated distance between restaurant and home location
     const [distance, setDistance] = useState('Calculating...');
 
+    // Calculate the distance using the Haversine formula when the component mounts
     useEffect(() => {
-        // Calculate the distance between restaurant and home location using the Haversine formula
         const calculateDistance = () => {
             const earthRadius = 6371; // Earth's radius in kilometers
             const lat1 = restaurant.lat;
@@ -19,9 +24,11 @@ const DeliveryScreen = () => {
             const lat2 = homeLocation.latitude;
             const lon2 = homeLocation.longitude;
 
+            // Convert latitude and longitude to radians
             const dLat = (lat2 - lat1) * (Math.PI / 180);
             const dLon = (lon2 - lon1) * (Math.PI / 180);
 
+            // Haversine formula calculations
             const a =
                 Math.sin(dLat / 2) * Math.sin(dLat / 2) +
                 Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
@@ -48,6 +55,7 @@ const DeliveryScreen = () => {
                 style={{ flex: 1, marginTop: -10, zIndex: 0 }}
                 mapType="mutedStandard"
             >
+                {/* Show a Polyline connecting the restaurant and home location */}
                 <Polyline
                     coordinates={[
                         { latitude: restaurant.lat, longitude: restaurant.long },
@@ -56,7 +64,9 @@ const DeliveryScreen = () => {
                     strokeColor="#ee5253"
                     strokeWidth={6}
                 />
+                {/* Show a Marker for the home location */}
                 <Marker coordinate={homeLocation} pinColor="#ee5253" />
+                {/* Show a Marker for the restaurant with title and description */}
                 <Marker
                     coordinate={{ latitude: restaurant.lat, longitude: restaurant.long }}
                     title={restaurant.title}
@@ -66,16 +76,18 @@ const DeliveryScreen = () => {
 
             <SafeAreaView style={{ backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, height: 130 }}>
                 <View>
-                    <Text style={{ fontSize: 14, color: 'gray' , paddingLeft: 5}}>Distance to Restaurant</Text>
+                    <Text style={{ fontSize: 14, color: 'gray', paddingLeft: 5 }}>Distance to Restaurant</Text>
                     <Text style={{ fontSize: 18, fontWeight: 'bold', paddingLeft: 5 }}>{distance}</Text>
-                </View> 
+                </View>
                 
+                {/* Display a loading indicator */}
                 <Progress.Bar size={40} color="#00CCBB" indeterminate={true} />
+
+                {/* Display an image (e.g., rider) */}
                 <Image source={{ uri: 'https://links.papareact.com/fls' }} style={{ width: 100, height: 100 }} />
-             
             </SafeAreaView>
-            
-            {/* Additional UI elements for the rider information */}
+
+            {/* Additional UI elements for rider information or other details */}
         </View>
     );
 };
