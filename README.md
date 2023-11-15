@@ -1,6 +1,9 @@
 # iuDelivery
 # A delivery mobile application made especially for students with specific discounts.
 
+# Github Repo
+https://github.com/Mohammed3MG/iuDelivery/tree/main
+
 # To clone the application: type blow code using git
 
 ' git clone https://github.com/Mohammed3MG/iuDelivery.git '
