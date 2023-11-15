@@ -17,7 +17,7 @@ Node v- 16 and above
 # To Run the app on your simulator, from your terminal type:
 expo start
 
-#then press
+# then press
 i => for ios
 a => for android 
 
