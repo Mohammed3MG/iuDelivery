@@ -24,12 +24,6 @@ expo start
 i => for ios
 a => for android 
 
-# Once the app is running on your simulator then you need to login using below credentials:
-
-# email:
-Mohammed.surguli@iu-study.org
-
-# Password with small case:
-admin123
+# Once the app is running on your simulator then you need to login using credentials:
 
 
